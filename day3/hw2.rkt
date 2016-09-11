@@ -1,6 +1,6 @@
 #lang racket
 
-;;; Student Name: Frankly Olin [change to your name]
+;;; Student Name: Bonnie Ishiguro
 ;;;
 ;;; Check one:
 ;;; [ ] I completed this assignment without assistance or external resources.
@@ -10,7 +10,11 @@
 ;;; 1.  Create a calculator that takes one argument: a list that represents an expression.
 
 (define (calculate x)
-  your-code-here)
+  (cond [(not (list? x)) x] ; return number values, base case for expression arguments
+  	[(eq? (first x) 'ADD) (+ (calculate (second x)) (calculate (third x)))]
+  	[(eq? (first x) 'SUB) (- (calculate (second x)) (calculate (third x)))]
+  	[(eq? (first x) 'MUL) (* (calculate (second x)) (calculate (third x)))]
+  	[(eq? (first x) 'DIV) (/ (calculate (second x)) (calculate (third x)))]))
 
 (calculate '(ADD 3 4)) ;; --> 7
 
@@ -18,7 +22,7 @@
 
 (calculate '(ADD 3 (MUL 4 5))) ;; --> 23   ;; what is the equivalent construction using list?
 (calculate '(SUB (ADD 3 4) (MUL 5 6))) ;; --> -23
-
+#|
 ;;; 3. Add comparators returning booleans (*e.g.*, greater than, less than, …).
 ;; Note that each of these takes numeric arguments (or expressions that evaluate to produce numeric values),
 ;; but returns a boolean.  We suggest operators `GT`, `LT`, `GE`, `LE`, `EQ`, `NEQ`.
@@ -33,3 +37,4 @@
 ;;; 5. Add IPH
 
 (calculate '(IPH (GT (ADD 3 4) 7) (ADD 1 2) (ADD 1 3))) ;; -> 4
+|#
