@@ -7,6 +7,20 @@
 ;; 0.  Implement factorial both recursively and tail recursively.
 ;;     Hint:  The tail recursive version will use a helper function.
 
+(define (factorial x)
+	(if (> x 0)
+		(if (< x 2)
+			1
+			(* x (factorial (- x 1))))
+		(display "Must be greater than 0")))
+
+(define (tail-factorial product n)
+	(if (< n 2)
+		product
+		(tail-factorial (* n product) (- n 1) )))
+
+;(factorial 6)
+;(tail-factorial 1 2)
 
 ;;;;;;;;;;;
 ;; 1.  Filter is built in to scheme.
@@ -18,9 +32,14 @@
 
 ;; Implement it anyway.  You might want to call it my-filter?  What arguments does it take?
 
+(define (my-filter tst lst)
+	(if (null? lst)
+		lst
+		(if (tst (first lst))
+			(cons (first lst) (my-filter tst (rest lst)))
+			(my-filter tst (rest lst)))))
 
-
-
+;(my-filter even? '(2 3 5))
 
 ;;;;;;;;;;;
 ;; 2.  Map is also built in to scheme.
@@ -35,11 +54,15 @@
 
 ;; Implement it as well.  You might want to call it my-map.  What arguments does it take?
 
+(define (double x) 
+	(* 2 x))
 
+(define (my-map fil lst)
+	(if (null? lst)
+		lst
+		(cons (fil (first lst)) (my-map fil (rest lst)))))
 
-
-
-
+;(my-map double '(2 3 5))
 
 ;;;;;;;;;;;
 ;; 3.  While we're reimplementing built-ins, implement my-append (just like built in append)
@@ -51,9 +74,13 @@
 ;; You might want to draw out the box and pointer structures for the original two lists
 ;; as well as for the new list.  Confirm with a member of the instructional staff....
 
+;; FIXME : '(((() . 1) . 2) . 3)
+(define (my-append a b lst)
+	(if (null? a)
+		lst
+		(my-append (rest a) b (cons lst (first a)))))
 
-
-
+(my-append '(1 2 3) '(4 5 6) '()) ; --> '(1 2 3 4 5 6)
 
 ;;;;;;;;;;;
 ;; 4.  zip takes two lists, and returns a list of elements of size two, until one of the lists runs out.
