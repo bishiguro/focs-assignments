@@ -74,24 +74,31 @@
 ;; You might want to draw out the box and pointer structures for the original two lists
 ;; as well as for the new list.  Confirm with a member of the instructional staff....
 
-;; FIXME : '(((() . 1) . 2) . 3)
+#| FIXME
 (define (my-append a b lst)
 	(if (null? a)
 		lst
-		(my-append (rest a) b (cons lst (first a)))))
+		;(my-append (rest a) b (cons lst (first a)))))
 
-(my-append '(1 2 3) '(4 5 6) '()) ; --> '(1 2 3 4 5 6)
+;(my-append '(1 2 3) '(4 5 6) '()) ; --> '(1 2 3 4 5 6)
+|#
 
 ;;;;;;;;;;;
 ;; 4.  zip takes two lists, and returns a list of elements of size two, until one of the lists runs out.
 
-;; (zip '(1 2 3) '(4 5 6)) ;; --> '((1 4) (2 5) (3 6))
 ;; (zip '(1 2 3) '(a b c d e f g)) ;; --> '((1 a) (2 b) (3 c))
+;; (zip '(1 2 3) '(4 5 6)) ;; --> '((1 4) (2 5) (3 6))
+
 
 ;; Implement `zip`.
 
-
-
+#|
+(define (zip a b lst)
+	;;(if (or ( = (length a) (length lst)) (= (length b) (length lst)))
+	(if (or (null? a) (null? b))
+		lst
+		(zip (rest a) (rest b) (cons (first a) (first b) lst))))
+|#
 
 ;;;;;;;;;;;;
 ;; 5.  Last built-in (for now):  (my-)reverse.
