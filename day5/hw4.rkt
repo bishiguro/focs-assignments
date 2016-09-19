@@ -63,7 +63,7 @@
 
 			[(eq? (first x) 'IPH) (if (calculate (second x) lookup-list) (calculate (third x) lookup-list) (calculate (fourth x) lookup-list))]
 			[(eq? (first x) 'DEFINE) (if (DEFINE? x) (def (second x) (third x) lookup-list) (display "Invalid definition."))]
-			[(eq? (first x) 'LAMBDA) (if (LAMBDA? x) (lam (second x) (third x) lookup-list) (display "Invalid lambda."))]))));(lam (second x) (third x) lookup-list)]))))
+			[(eq? (first x) 'LAMBDA) (if (LAMBDA? x) (lam (second x) (third x) lookup-list) (display "Invalid lambda."))]))))
 			;; return closure - params and body of original lambda, current env
 (define operator-list
 	  (list (list 'ADD +)
