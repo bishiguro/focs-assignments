@@ -3,7 +3,7 @@
 ;;; Student Name: Bonnie Ishiguro
 ;;;
 ;;; Check one:
-;;; [ ] I completed this assignment without assistance or external resources.
+;;; [x] I completed this assignment without assistance or external resources.
 ;;; [ ] I completed this assignment with assistance from ___
 ;;;     and/or using these external resources: ___
 
@@ -25,11 +25,23 @@
 			#f)
 		#f))
 
+(define (LAMBDA? exp)
+	(if (list? exp)
+		(if (eq? (first exp) 'LAMBDA)
+			(if (= 3 (length exp))
+				(if (and (list? (second exp)) (list? (third exp)))
+					#t
+					#f)
+				#f)
+			#f)
+		#f)
+	#f)
+
 (define (def name body lst)
 	(repl (list (list name (calculate body lst)) lst))) ;; FIXME: can only save one new variable at a time, environment not persisted?
 
 (define (lam params body lst)
-	(lambda (params) body)) ;; FIXME: void
+	(lambda (params) body))
 
 (define (calculate x lookup-list) ;; built upon my evaluator from hw2.rkt
   (if (symbol? x)
@@ -56,7 +68,7 @@
 
 			[(eq? (first x) 'IPH) (if (calculate (second x) lookup-list) (calculate (third x) lookup-list) (calculate (fourth x) lookup-list))]
 			[(eq? (first x) 'DEFINE) (if (DEFINE? x) (def (second x) (third x) lookup-list) (display "Invalid definition."))]
-			[(eq? (first x) 'LAMDA) (lam (second x) (third x) lookup-list)]))))
+			[(eq? (first x) 'LAMDA) (if (LAMBDA? x) (lam (second x) (third x) lookup-list) (display "Invalid lambda."))]))));(lam (second x) (third x) lookup-list)]))))
 			;; return closure - params and body of original lambda, current env
 (define operator-list
 	  (list (list 'ADD +)
