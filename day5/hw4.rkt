@@ -16,26 +16,21 @@
 
 (define (DEFINE? exp)
 	(if (list? exp)
-		(if (eq? (first exp) 'DEFINE)
 			(if (= 3 (length exp))
 				(if (symbol? (second exp))
 					#t
 					#f)
 				#f)
-			#f)
-		#f))
+			#f))
 
 (define (LAMBDA? exp)
 	(if (list? exp)
-		(if (eq? (first exp) 'LAMBDA)
-			(if (= 3 (length exp))
-				(if (and (list? (second exp)) (list? (third exp)))
-					#t
-					#f)
+		(if (= 3 (length exp))
+			(if (and (list? (second exp)) (list? (third exp)))
+				#t
 				#f)
 			#f)
-		#f)
-	#f)
+		#f))
 
 (define (def name body lst)
 	(repl (list (list name (calculate body lst)) lst))) ;; FIXME: can only save one new variable at a time, environment not persisted?
@@ -68,7 +63,7 @@
 
 			[(eq? (first x) 'IPH) (if (calculate (second x) lookup-list) (calculate (third x) lookup-list) (calculate (fourth x) lookup-list))]
 			[(eq? (first x) 'DEFINE) (if (DEFINE? x) (def (second x) (third x) lookup-list) (display "Invalid definition."))]
-			[(eq? (first x) 'LAMDA) (if (LAMBDA? x) (lam (second x) (third x) lookup-list) (display "Invalid lambda."))]))));(lam (second x) (third x) lookup-list)]))))
+			[(eq? (first x) 'LAMBDA) (if (LAMBDA? x) (lam (second x) (third x) lookup-list) (display "Invalid lambda."))]))));(lam (second x) (third x) lookup-list)]))))
 			;; return closure - params and body of original lambda, current env
 (define operator-list
 	  (list (list 'ADD +)
