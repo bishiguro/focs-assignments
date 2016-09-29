@@ -18,8 +18,6 @@ For each of the following languages, decide whether it is regular.  If it is reg
 
 a) Strings containing only the symbol a whose length is a power of 2 (*i.e.* length 2^n)
 
-[The strings `a`, `aa`, `aaaa`, and `aaaaaaaa` are in this language; the string `aaaaa` is not.]
-
 Not regular.  If we start with the string 'a', the y (looping) substring has to be 'a'.  If y is looped three times, the string is no longer in the language, since 3 is not a power of 2.
 
 b) All strings with an equal number of occurrences of the substrings `01` and `10`.
@@ -27,8 +25,6 @@ b) All strings with an equal number of occurrences of the substrings `01` and `1
 [010 is in this language; `000110` is in the language; `0101010` is in the language; but `010101` is not.]
 
 c) All strings (over {0,1}) consisting of a substring _w_ followed by the reverse of the substring.
-
-[The strings `00100100` and `11110101011010101111` are in this language; the strings `00100` and `010101 `are not.]
 
 Not regular.  If we start with the string '101101', and choose the substring '10' to be y, the possible result '10110101' is not in the language.
 
@@ -39,23 +35,18 @@ Play the **pumping game** (referenced on the [Day 8 page](https://sites.google.c
 L = {a^n | n is prime}
 Word: aaaaaaaaaaaa
 Computer's substring: aaaa
-Pumped string: aaaaaaaaaaaaaaaaaaaaa (length = 21)
+Pumped string: aaaaaaaaaaaaaaaaaaaaa
 
 L = {a^n b^k a^(n+k) | k,n are natural numbers}
 Word: aaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaa
 Computer's substring: aaa
 Pumped string: aaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
-Notation notes:
-
-- The notation |w| sub a means the number of `a`'s in the word _w_.
-- _a_^_n_ means _n_ occurrences of `a` (e.g. _a_^8 is `aaaaaaaa`)
-
-If you have other questions about notation (or anything else), please post them to [Piazza](https://piazza.com) so that we can clarify for everyone.
-
 ## 3. Create a PDA
 
 For one of the non-regular languages in problem 1 or 2 above, create a PDA (preferably in JFLAP) and include it with your completed homework.
+
+See anbk.png and anbk_run.png for PDA and JFLAP tests of L = {a^n b^k a^(n+k) | k,n are natural numbers}.
 
 ## 4. Reading
 
