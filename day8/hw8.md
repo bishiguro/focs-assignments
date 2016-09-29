@@ -7,9 +7,9 @@ If you add a separate file, please include the following at the top:
 ```
 Student Name: Bonnie Ishiguro
 Check one:
-[x] I completed this assignment without assistance or external resources.
-[ ] I completed this assignment with assistance from ___
-   and/or using these external resources: ___
+[] I completed this assignment without assistance or external resources.
+[x] I completed this assignment with assistance from ___
+   and/or using these external resources: https://www.youtube.com/watch?v=s5cB_xg9NGg
 ```
 
 ## 1. For each of the following languages, decide whether it is regular
