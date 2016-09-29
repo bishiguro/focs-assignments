@@ -22,8 +22,6 @@ Not regular.  If we start with the string 'a', the y (looping) substring has to 
 
 b) All strings with an equal number of occurrences of the substrings `01` and `10`.
 
-[010 is in this language; `000110` is in the language; `0101010` is in the language; but `010101` is not.]
-
 c) All strings (over {0,1}) consisting of a substring _w_ followed by the reverse of the substring.
 
 Not regular.  If we start with the string '101101', and choose the substring '10' to be y, the possible result '10110101' is not in the language.
