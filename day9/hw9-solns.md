@@ -39,7 +39,7 @@ Give a derivation for `010010`.
 
 **Solution**:
 
-	S -> 0S0 -> 01S10 -> 010010
+	S -> 0S0 -> 01S10 -> 010ε010 = 010010
 
 **Problem**:
 
@@ -53,7 +53,9 @@ b) All strings (over {a,b,c}) of the form a^{i}b^{i}c^{j}: an equal number of `a
 	T -> aTb | ε
 	U -> cU | ε
 
-(The final rule could also be `U -> Uc | ε`)
+(The final rule could also be `U -> Uc | ε`.)
+
+`T` derives any number of `a`s followed by an equal number of `c`s. `U` derives any number of `c`s.
 
 Follow-on question: do *G2* or G3* work? (Are there strings that *G1* derives but *G2* or *G3* do not? Are there strings that *G2* or *G3* derive but *G1* does not?)
 
@@ -107,21 +109,25 @@ Any two of:
 
 *G5*:
 
-	S -> T | ε
-	T -> aU | ε
-	U -> bT
-
-(Would *G5* work if the final rule were `U -> bT | ε`?)
+	S -> abT | ε
+	T -> abS | ε
 
 *G6*:
 
-	S -> T | ε
-	T -> AU | ε
+	S -> aT | ε
+	T -> bS
+
+(Would *G5* work if the final rule were `T -> bS | ε`?)
+
+*G7*:
+
+	S -> AU | ε
+	T -> AU
 	U -> BT
 	A -> a
 	B -> b
 
-(*G5* is in Chomsky normal form.)
+(*G7* is in Chomsky normal form.)
 
 ## 4. Ambiguous Grammars
 
@@ -136,7 +142,7 @@ a. parse trees
 
 **Solution**:
 
-![](soln-4a.png)
+![](hw9-soln-4a.png)
 
 **Problem**:
 

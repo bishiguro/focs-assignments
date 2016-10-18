@@ -63,11 +63,20 @@ Note that _a XOR (_b_ XOR _a_) = _b_. You can also prove this from the following
 
 Putting these together: _a_ XOR (_b_ XOR _a_) = _a_ XOR (_a_ XOR _b_) = (_a_ XOR _a_) XOR _b_ = 0 XOR _b_ = _b_.
 
-This enables this one weird trick for swapping the values of two integers without using a temporary variable:
+This enables this one weird trick for swapping the values of two booleans without using a temporary variable:
 
 	a := a XOR b  # now (a, b) = (a0 XOR b0, b0), where (a0, b0) are the original values of a and b
 	b := a XOR b  # now (a, b) = (a0 XOR b0, (a0 XOR b0) XOR b0) = (a0 XOR b0, a0)
 	a := a XOR b  # now (a, b) = ((a0 XOR b0) XOR a0, a0) = (b0, a0) 
+
+This also works on integers. Python (and C, and Java) `a ^= b` is equivalent to `a = a ^ b`; `^` is [bitwise xor](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).
+
+	>>> a, b = 1729, 42  # a, b = binary 11011000001, 00000101010
+	>>> a ^= b           # a, b = binary 11011101011, 00000101010
+	>>> b ^= a           # a, b = binary 11011101011, 11011000001
+	>>> a ^= b           # a, b = binary 00000101010, 11011000001
+	>>> a, b
+	(42, 1729)
 
 b. Which function corresponds to the English word "or", as used in "You will eat your meat OR you can't have any pudding" (where _a_ = "You will eat your meat" and _b_ = "you can't have any pudding").
 
@@ -90,7 +99,7 @@ Convert G to a PDA.
 
 **Solution:**
 
-![](hw10-2-soln.png)
+![](hw10-2-soln.svg)
 
 ### 3.
 
@@ -102,17 +111,17 @@ This solution applies the conversion to the abbreviated representation of the gr
 
 1. Introduce a new start variable:
 
-		S -> E
-		E -> E + E | T
-		T -> T x T | (E) | a
+   	S -> E
+   	E -> E + E | T
+   	T -> T x T | (E) | a
 
 2. Remove epsilon rules. This grammar has none, so we're done with this step.
 
 3. Remove unit rules:
 
-		S -> E
-		E -> E + E | T x T | (E) | a
-		T -> T x T | (E) | a
+   	S -> E
+   	E -> E + E | T x T | (E) | a
+   	T -> T x T | (E) | a
 
 4a. Introduce intermediate variables for long (>2 item) right-hand sides:
 
@@ -202,7 +211,7 @@ G1's language is L1 = {a^i b^i c^j}. G2's language is L2 = {a^i b^j c^j}. L1 and
 
 The intersection of L1 and L2 is L3 = {a^n b^n c^n}.
 
-By theorem 1, L3 is not a context-free languages. Therefore, L1 ∩ L2 = L3, L1 ∈ CFL, L2 ∈ CFL, L3 ∉ CFL is a counter-example to the proposition that the set of context-free languages is closed under intersection.
+By theorem 1, L3 is not a context-free language. Therefore, L1 ∩ L2 = L3, L1 ∈ CFL, L2 ∈ CFL, L3 ∉ CFL is a counter-example to the proposition that the set of context-free languages is closed under intersection.
 
 b. Use the pumping lemma for context-free languages [Sipser pp. 125] to prove Theorem 1.
 
