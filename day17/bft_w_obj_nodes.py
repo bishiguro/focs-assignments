@@ -8,7 +8,7 @@ Date   : 2016-10-27
 License: MIT License
 """
 
-from queue import Queue
+from Queue import Queue
 
 
 class Graph(object):
@@ -42,10 +42,11 @@ class Node(object):
 
     def __init__(self, label):
         self.label = label
+        self.parent = None
+        self.distance = 0
 
     def __repr__(self):
-        return self.label
-
+        return "Label: " + self.label + ", Distance: " + str(self.distance)
 
 def bfs(graph, start):
     remaining_nodes = Queue()
@@ -55,6 +56,8 @@ def bfs(graph, start):
         print(node)
         visited.add(node)
         for tail in graph.successors(node):
+            tail.parent = node
+            tail.distance = node.distance + 1
             if tail not in visited:
                 remaining_nodes.put(tail)
 
